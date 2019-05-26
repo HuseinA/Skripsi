@@ -1,46 +1,46 @@
 import pickle
 a={'Closer':'Rock', 'I Surrender Dear':'Jazz', 'Six To Four':'Jazz', 'Wow':'Hip Hop', 'All The Way':'Jazz', 'Bartier Cardi':'Hip Hop', 
-'Know Your Enemy':'Rock', 'Two Years Of Torture':'Jazz', "Doin' It Right":'Electronic', 'You Make Me Feel So Young':'Jazz', 
+'Know Your Enemy':'Rock', 'Two Years Of Torture':('Jazz','Pop'), "Doin' It Right":('Electronic','Pop'), 'You Make Me Feel So Young':('Jazz','Pop'), 
 'Remind Me':'Hip Hop', 'Headlight':'Pop', 'Slime':'Hip Hop', 'Tragic Endings':'Hip Hop', 'Man of the Woods':'Pop', 'Good Times Bad Times':'Rock', 
-'Whole Lotta Love':'Rock', 'Tell Me':'Rock', 'Wait':'Pop', 'Instant Crush':'Electronic', 'The Worst Crime':'Electronic',
-'I Wish I Were In Love Again':'Jazz', 'Fragments of Time':'Electronic', 'I Like It':'Hip Hop', 'Poison Heart':'Electronic', 
-'Sing Me to Sleep':'Electronic', 'Something In The Way':'Rock', 'Force':'Electronic', 'Legendary Child':'Rock',
-'Old Shoes (& Picture Postcards)':'Jazz', 'The Spectre':'Electronic', 'Murder City':'Rock', 'Wave':'Pop', 'Together':'Pop', 
-'Closing Time':'Jazz', 'HERO':'Pop', 'Before The Lobotomy':'Rock', "Breezin'":'Jazz', 'Ready For It':'Pop', 
-'You Know Youre Right':'Rock', 'I Do':'Hip Hop', 'You Move':'Electronic', 'Just One Of Those Things':'Jazz', 'This Masquerade':'Jazz',
-"Don't Let The Sun Catch You Cryin'":'Jazz', 'Smells Like Teen Spirit':'Rock', 'Best 4 You':'Pop', 
-'Another Reflection':'Hip Hop', 'Motorcycle':'Hip Hop', 'Stairway To Heaven':'Rock', 'Sauce':'Pop', 'Come as you are':'Rock', 
-'I Did Something Bad':'Pop', 'Give Life Back to Music':'Electronic', 'Girls Like You':'Pop', 'Morning Light':'Pop', 
-'Let The Good Times Roll':'Jazz', 'River':'Hip Hop', 'Going Backwards':'Electronic', 'A Day by Atmosphere Supreme':'Hip Hop', 
-'Heat':'Hip Hop', 'The Final View':'Hip Hop', 'Drip':'Hip Hop', 'Tired':'Electronic', "Don’t Blame Me":'Pop', 'Help Me Out':'Pop', 'So This Is Love':'Jazz',
-'Rock And Roll':'Rock', 'Poorman':'Electronic', 'The Game of Love':'Electronic',
+'Whole Lotta Love':'Rock', 'Tell Me':'Rock', 'Wait':('Pop','Rock','Hip Hop'), 'Instant Crush':('Electronic','Pop'), 'The Worst Crime':('Electronic','Rock'),
+'I Wish I Were In Love Again':('Jazz','Pop'), 'Fragments of Time':('Electronic','Pop'), 'I Like It':('Hip Hop','Pop','Electronic'), 'Poison Heart':('Electronic','Rock','Pop'), 
+'Sing Me to Sleep':('Electronic','Pop','Hip Hop'), 'Something In The Way':'Rock', 'Force':'Electronic', 'Legendary Child':'Rock',
+'Old Shoes (& Picture Postcards)':('Jazz','Pop','Rock'), 'The Spectre':('Electronic','Pop'), 'Murder City':'Rock', 'Wave':'Pop', 'Together':'Pop', 
+'Closing Time':('Jazz','Pop','Rock'), 'HERO':'Pop', 'Before The Lobotomy':'Rock', "Breezin'":'Jazz', 'Ready For It':('Pop','Electronic','Hip Hop'), 
+'You Know Youre Right':'Rock', 'I Do':'Hip Hop', 'You Move':('Electronic','Rock'), 'Just One Of Those Things':('Jazz','Pop'), 'This Masquerade':'Jazz',
+"Don't Let The Sun Catch You Cryin'":('Jazz','Pop'), 'Smells Like Teen Spirit':'Rock', 'Best 4 You':'Pop', 
+'Another Reflection':('Hip Hop','Electronic','Jazz'), 'Motorcycle':'Hip Hop', 'Stairway To Heaven':'Rock', 'Sauce':'Pop', 'Come as you are':'Rock', 
+'I Did Something Bad':('Pop','Electronic','Hip Hop'), 'Give Life Back to Music':('Electronic','Pop'), 'Girls Like You':('Pop','Electronic','Hip Hop'), 'Morning Light':'Pop', 
+'Let The Good Times Roll':('Jazz','Pop'), 'River':'Hip Hop', 'Going Backwards':('Electronic','Pop','Rock'), 'A Day by Atmosphere Supreme':('Hip Hop','Electronic','Jazz'), 
+'Heat':'Hip Hop', 'The Final View':('Hip Hop','Electronic','Jazz'), 'Drip':'Hip Hop', 'Tired':('Electronic','Pop','Hip Hop'), "Don’t Blame Me":('Pop','Electronic','Hip Hop'), 'Help Me Out':('Pop','Electronic'), 'So This Is Love':'Jazz',
+'Rock And Roll':'Rock', 'Poorman':('Electronic','Rock'), 'The Game of Love':('Electronic','Pop'),
 
 'Black Dog':'Rock',
 'Beautiful':'Rock',
 'Affirmation':'Jazz',
-'Within':'Electronic',
+'Within':('Electronic','Pop'),
 'Best Life':'Hip Hop',
-'Lonely':'Jazz',
-'Cover Me':'Electronic',
-'Kumomi':'Hip Hop',
+'Lonely':('Jazz','Pop','Rock'),
+'Cover Me':('Electronic','Pop','Rock'),
+'Kumomi':('Hip Hop','Electronic','Jazz'),
 'Higher Higher':'Pop',
-'Where Are You':'Pop',
+'Where Are You':('Pop','Jazz'),
 'There_s No You':'Jazz',
 'No Peace':'Hip Hop',
-'Delicate':'Pop',
-'Witchcraft':'Jazz',
+'Delicate':('Pop','Electronic','Hip Hop'),
+'Witchcraft':('Jazz','Pop'),
 'See The Light':'Rock',
-'Beyond':'Electronic',
+'Beyond':('Electronic','Pop'),
 'Bet My Heart':'Pop',
 'Framed':'Hip Hop',
-'Alone':'Electronic',
-'End Game':'Pop',
-'21 Guns':'Rock',
+'Alone':('Electronic','Pop','Hip Hop'),
+'End Game':('Pop','Electronic','Hip Hop'),
+'21 Guns':('Rock','Pop'),
 'Lord Forgive Me':'Hip Hop',
 'Lady':'Jazz',
-'So Much Love':'Electronic',
-'Come Rain Or Come Shine':'Jazz',
-'Faded':'Electronic',
+'So Much Love':('Electronic','Rock','Pop'),
+'Come Rain Or Come Shine':('Jazz','Pop'),
+'Faded':('Electronic','Pop','Hip Hop'),
 'Bodak Yellow':'Hip Hop',
 'fly':'Pop',
 'Kashmir':'Rock',
@@ -68,18 +68,17 @@ a={'Closer':'Rock', 'I Surrender Dear':'Jazz', 'Six To Four':'Jazz', 'Wow':'Hip 
 'twopart invention in e':'Classic',
 }
 #pickle.dump(a,open('databin/songclass.p','wb'))
-"""b=pickle.load(open('songclass.p','rb'))
+#b=pickle.load(open('songclass.p','rb'))
 res={'Hip Hop':0,'Pop':0,'Electronic':0,'Rock':0,'Jazz':0}
-for x in b:
-    if b[x] in res:
-        res[b[x]]+=1
-print(b)"""
-
-res={'Hip Hop':[1,0],'Pop':[3,0],'Electronic':[10,0],'Rock':[230,0],'Jazz':[30,0],'Classic':[12,0]}
-a=[[v[0],k] for k,v in res.items()]
-a.sort(reverse=True)
-print(a[:3])
-
+n=0
+for x in a.values():
+    for y in x:
+        if y in res:
+                res[y]+=1
+        else:
+                print()
+print(res)
+print(n)
 
 #b=pickle.load(open('databin/latih6010.p','rb'))
 #print([x for x in b if x[4]=='You Know Youre Right']) 
