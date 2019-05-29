@@ -67,19 +67,18 @@ a={'Closer':'Rock', 'I Surrender Dear':'Jazz', 'Six To Four':'Jazz', 'Wow':'Hip 
 'the peace patrol':'Classic',
 'twopart invention in e':'Classic',
 }
-#pickle.dump(a,open('databin/songclass.p','wb'))
+pickle.dump(a,open('databin/multilabelclass0.p','wb'))
 #b=pickle.load(open('songclass.p','rb'))
-res={'Hip Hop':0,'Pop':0,'Electronic':0,'Rock':0,'Jazz':0}
+"""res={'Hip Hop':0,'Pop':0,'Electronic':0,'Rock':0,'Jazz':0,'Classic':0}
 n=0
 for x in a.values():
-    for y in x:
-        if y in res:
+    #n+=1
+    if x in res:
+        res[x]+=1
+    else:
+        for y in x:
                 res[y]+=1
-        else:
-                print()
-print(res)
-print(n)
-
+print(res)"""
 #b=pickle.load(open('databin/latih6010.p','rb'))
 #print([x for x in b if x[4]=='You Know Youre Right']) 
 
