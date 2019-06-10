@@ -2,10 +2,10 @@ import librosa,numpy,pickle
 from os import listdir
 from os.path import isfile, join
 
-tp='latih'
-dur=10
-offs=120
-file=[f for f in listdir('lagu/'+tp) if isfile(join('lagu/'+tp, f))]
+tp='uji'
+dur=20
+offs=60
+file=[f for f in listdir('../Music/'+tp) if isfile(join('../Music/'+tp, f))]
 
 def extraction(song,offset,duration):
     hop_length = 256
@@ -15,8 +15,8 @@ def extraction(song,offset,duration):
     spec_centroid = librosa.feature.spectral_centroid(x, sr=sr)[0]
     spec_rolloff = librosa.feature.spectral_rolloff(x + 0.01, sr=sr)[0]
     energy = numpy.array([sum(x[i:i + frame_length] ** 2)for i in range(0, len(x), hop_length)])
-    return [zeros,spec_centroid,spec_rolloff,energy,song[11:-4]]
+    return [zeros,spec_centroid,spec_rolloff,energy,song[13:-4]]
 
-result=[extraction('lagu/'+tp+'/'+x,offs,dur) for x in file ]
+result=[extraction('../Music/'+tp+'/'+x,offs,dur) for x in file ]
 #result=extraction('lagu/'+tp+'/'+file[0],offs,dur)
 pickle.dump(result,open('databin/classic'+tp+str(offs)+str(dur)+'.p','wb'))
