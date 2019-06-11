@@ -4,7 +4,7 @@ from os.path import isfile, join
 
 tp='uji'
 dur=20
-offs=60
+offs=70
 file=[f for f in listdir('../Music/'+tp) if isfile(join('../Music/'+tp, f))]
 
 def extraction(song,offset,duration):
