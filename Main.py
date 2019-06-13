@@ -2,11 +2,11 @@ import pickle, numpy
 from statistics import mode
 import operator
 
-dur=20
+dur=10
 offs=60
-K=10
-data=pickle.load(open('databin/latih'+str(offs)+str(dur)+'.p','rb'))
-tes=pickle.load(open('databin/classicuji'+str(offs)+str(dur)+'.p','rb'))
+K=15
+data=pickle.load(open('databin/teslatih'+str(offs)+str(dur)+'.p','rb'))
+tes=pickle.load(open('databin/tesuji'+str(offs)+str(dur)+'.p','rb'))
 kelas=pickle.load(open('databin/multilabelclass0.p','rb'))
 def cros_corr(train,test):
     return sum([a*b for a,b in zip(train,test)])
@@ -36,7 +36,6 @@ def init(uji):
 
     a=[a[i]+[kelas[x[1]]] for i,x in enumerate(a) if x[1] in kelas]
     a.sort(key=lambda x:x[0])
-
     res={'Hip Hop':[0,0],'Pop':[0,0],'Electronic':[0,0],'Rock':[0,0],'Jazz':[0,0],'Classic':[0,0]}
     for x in a[:K]:
         if x[2] in res:
@@ -60,7 +59,7 @@ def init(uji):
 
 def Main():
     z=[tes[i]+[kelas[x[4]]] for i,x in enumerate(tes) if x[4] in kelas]
-    z=[(x[4:]+[init(x)]) for x in tes]
+    z=[(x[4:]+[init(x)]) for x in z]
     for x in z:
         print(x)
     z=[x for x in z if any(y in x[2] for y in x[1])]
