@@ -1,7 +1,23 @@
-mn=2
-mx=10
-form=lambda a:(a-mn)/(mx-mn)
-a=[1,2,3]
-print([form(x) for x in a])
-a=a[0],[1,2,3]
-print([a])
+import pickle
+
+z=pickle.load(open('databin/hasil1201015.p','rb'))
+for x in z:
+        print(x)
+for x in z:
+    print(x[2])
+z=[x for x in z if any(y in x[2] for y in x[1])]
+print(len(z))
+print(z)
+
+"""import pickle
+x=[30,60,90,120]
+y=[10,20,30]
+k=[5,10,15]
+
+for a in x:
+    print('_________________________________________________')
+    for b in y:
+        for c in k:
+            z=pickle.load(open('databin/hasil'+str(a)+str(b)+str(c)+'.p','rb'))
+            z=[x for x in z if any(y in x[2] for y in x[1])]
+            print('duration:'+str(b)+'\toffset:'+str(a)+'\tK:'+str(c)+'\tHasil:'+str(len(z)))"""
