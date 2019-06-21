@@ -17,9 +17,7 @@ def xor(train,test):
     return len([True for a,b in zip(train,test) if a is b])
 
 def distance(train,test):
-    a=xor(train[0],test[0])
-    b=[cros_corr(train[i],test[i]) for i in range(4)]
-    return [a]+b
+    return [cros_corr(train[i],test[i]) for i in range(4)]
 
 def minmax(train,test):
     norm=numpy.concatenate((train,test))
@@ -30,7 +28,6 @@ def minmax(train,test):
     train=[[form(b[a],a) for a in range(4)]+[b[4]] for b in train]
     test=[[form(b[a],a) for a in range(4)]+[b[4]] for b in test]
     return train,test
-
 
 def init(uji):
     a=[distance(x,uji) for x in data]
