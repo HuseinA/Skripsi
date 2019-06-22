@@ -5,7 +5,9 @@ from os.path import isfile, join
 tp='uji'
 dur=20
 offs=60
-file=[f for f in listdir('lagu/'+tp) if isfile(join('lagu/'+tp, f))]
+#file=[f for f in listdir('lagu/'+tp) if isfile(join('lagu/'+tp, f))]
+file=[f for f in listdir('../Music/'+tp+'128kbps') if isfile(join('../Music/'+tp+'128kbps', f))]
+
 
 def extraction(song,offset,duration):
     hop_length = 256
@@ -20,13 +22,15 @@ def extraction(song,offset,duration):
 def norm(fitur):
     x=fitur.var()
     y=fitur.mean()
-    return (fitur-y)/(max(fitur)-min(fitur))
+    z=fitur.std()
+    #return (fitur-y)/(max(fitur)-min(fitur))
+    return (fitur-y)/z
 
 def minmax(fitur):
     return (fitur-min(fitur))/(max(fitur)-min(fitur))
 
 #result=[extraction('lagu/'+tp+'/'+x,offs,dur) for x in file ]
 for x in file:
-    z=extraction('lagu/'+tp+'/'+x,offs,dur)
+    z=extraction('../Music/'+tp+'128kbps/'+x,offs,dur)
     print(max(z),min(z))
 #pickle.dump(result,open('databin/norm'+tp+str(offs)+str(dur)+'.p','wb'))

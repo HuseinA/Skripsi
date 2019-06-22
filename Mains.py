@@ -1,8 +1,8 @@
 import pickle
 
-z=pickle.load(open('databin/hasil1201015.p','rb'))
+z=pickle.load(open('databin/hasil301015.p','rb'))
 for x in z:
-        print(x)
+    print(x)
 for x in z:
     print(x[2])
 z=[x for x in z if any(y in x[2] for y in x[1])]
