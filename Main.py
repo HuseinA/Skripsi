@@ -4,8 +4,13 @@ from functools import reduce as rd
 import operator
 
 dur=10
-offs=30
-K=5
+offs=120
+K=10
+
+#dur=int(input('input durasi testing :'))
+#offs=int(input('input offset testing :'))
+#K=int(input('input K testing :'))
+
 data=numpy.array(pickle.load(open('databin/latih'+str(offs)+str(dur)+'.p','rb')))
 tes=numpy.array(pickle.load(open('databin/uji'+str(offs)+str(dur)+'.p','rb')))
 kelas=pickle.load(open('databin/songclass.p','rb'))
@@ -42,10 +47,29 @@ def init(uji):
         return [min([v[1],k] for k,v in res.items() if v[0]==max(v[0] for v in res.values()))[1]]
 
 def Main():
-    z=[tes[i]+[kelas[x[4]]] for i,x in enumerate(tes) if x[4] in kelas]
-    z=[x[4:]+init(x) for x in z]
+    index=int(input('Choose index song:'))
+    printHasil(tes,index-1)
+    #Pengujian()
+
+def Pengujian():
+    z=[x[4:]+init(x) for x in tes]
+    #pickle.dump(z,open('databin/hasil'+str(offs)+str(dur)+str(K)+'.p','wb'))
     z=[x for x in z if x[2] == x[1]]
     print(len(z))
 
+def printHasil(z,i):
+    print('\nduration:'+str(dur)+'\toffset:'+str(offs)+'\tK:'+str(K))
+    print('Song\t\t: '+z[i][4])
+    print('Actual\t\t: '+z[i][5])
+    print('Predicted\t: '+init(tes[i])[0])
+
+def printLagu():
+    for i,x in enumerate(tes):
+        print('{} : {}'.format(i+1,x[4]))
+
 data,tes=minmax(data,tes)
+if input('Show Song List? (y/n) :')=='y':printLagu()
+tes=[tes[i]+[kelas[x[4]]] for i,x in enumerate(tes) if x[4] in kelas]
 Main()
+
+
