@@ -13,26 +13,26 @@ K=10 # K in KNN
 
 train=numpy.array(pickle.load(open('databin/latih'+str(offs)+str(dur)+'.p','rb')))
 test=numpy.array(pickle.load(open('databin/uji'+str(offs)+str(dur)+'.p','rb')))
-class=pickle.load(open('databin/songclass.p','rb'))
+kelas=pickle.load(open('databin/songclass.p','rb'))
 
 def cros_corr(train,test):
-    return sum([a*b for a,b in zip(train,test)])/numpy.sqrt(sum([a**2 for a in train]) * sum([a**2 for a in test]))
+    return sum([trn*tst for trn,tst in zip(train,test)])/numpy.sqrt(sum([trn**2 for trn in train]) * sum([trn**2 for trn in test]))
 
 def minmax(train,test):
-    norm=numpy.concatenate((train,test))
-    temp=[numpy.concatenate((x),axis=None) for x in numpy.transpose(norm)]
+    temp=numpy.concatenate((train,test))
+    temp=[numpy.concatenate((x),axis=None) for x in numpy.transpose(temp)]
     mean=[numpy.mean(x) for x in temp[:4]]
     std=[numpy.std(x) for x in temp[:4]]
-    form=lambda a,i:(a-mean[i])/std[i]
-    train=[[form(b[a],a) for a in range(4)]+[b[4]] for b in train]
-    test=[[form(b[a],a) for a in range(4)]+[b[4]] for b in test]
+    form=lambda data,i:(data-mean[i])/std[i] # minmax normalization formula
+    train=[[form(trn[i],i) for i in range(4)]+[trn[4]] for trn in train]
+    test=[[form(tst[i],i) for i in range(4)]+[tst[4]] for tst in test]
     return train,test
 
 def init(uji):
-    distance=[[cros_corr(x[i],uji[i]) for i in range(4)] for x in train]
-    distance=[[4-sum(x),y[4]] for x,y in zip(distance,train)]
+    distance=[[cros_corr(feature[i],uji[i]) for i in range(4)] for feature in train]
+    distance=[[4-sum(feature),genre[4]] for feature,genre in zip(distance,train)]
 
-    distance=[distance[i]+[class[x[1]]] for i,x in enumerate(distance) if x[1] in class]
+    distance=[distance[i]+[kelas[x[1]]] for i,x in enumerate(distance) if x[1] in kelas]
     distance.sort(key=lambda x:x[0])
 
     result={'Hip Hop':[0,0],'Pop':[0,0],'Electronic':[0,0],'Rock':[0,0],'Jazz':[0,0]}
@@ -69,5 +69,5 @@ def printLagu():
 
 train,test=minmax(train,test)
 if input('Show Song List? (y/n) :')=='y':printLagu()
-test=[test[i]+[class[x[4]]] for i,x in enumerate(test) if x[4] in class]
+test=[test[i]+[kelas[x[4]]] for i,x in enumerate(test) if x[4] in kelas]
 Main()
