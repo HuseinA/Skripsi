@@ -5,7 +5,7 @@ from os.path import isfile, join
 data = "uji"
 dur = 10  # song duration
 offs = 120  # song offset
-directory = "../Music/" + data + "128kbps"
+directory = "../Music/" + data + "128kbps" # song directory
 
 file = [f for f in listdir(directory) if isfile(join(directory, f))]
 
